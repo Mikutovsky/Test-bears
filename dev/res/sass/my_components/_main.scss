@@ -1,0 +1,145 @@
+@import "_reservestyle";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $fontText;
+  font-size: 14px;
+}
+
+.page {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header {
+  background-color: $bgColor;
+  @include tx-media(phone) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+  &__img {
+    padding-right: 12px;
+  }
+  &__text {
+    font-size: 24px;
+    font-family: $fontLogo;
+    color: $headerTextColor;
+  }
+}
+
+.control-panel {
+  margin: 40px 0px;
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    @include tx-media(phone) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+    }
+  }
+  &__right-section {
+    display: flex;
+    margin-right: 80px; /*?*/
+    z-index: 100;
+    @include tx-media(phone) {
+      display: flex;
+      // align-items: center;
+      flex-direction: column;
+      font-size: 18px;
+      margin-right: 15px;
+    }
+  }
+  &__title {
+    font-size: 24px;
+    @include tx-media(phone) {
+      font-size: 28px;
+    }
+    color: #3f3f3f;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  border-radius: 6px;
+  background-color: #fff;
+  padding-bottom: 10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    @include tx-media(phone) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+    }
+    // @include tx-media(tablet) {
+    //   justify-content: center;
+    //   text-align: center;
+    //   text-align: center;
+    // }
+
+    @media (min-width: 1000px) and (max-width: 1400px) {
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+  }
+  &__img img {
+    position: relative;
+    width: 250px !important;
+    height: auto;
+  }
+  &__title-reserv {
+    position: absolute;
+    font-size: 18px;
+    padding-top: 20px;
+  }
+  &__info {
+    margin: 25px 0px;
+    text-align: center;
+  }
+  &__title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
+
+.footer {
+  min-height: 40px;
+  margin-top: auto;
+  background-color: $bgColor;
+  &__text {
+    color: $footerTextColor;
+    text-align: center;
+    line-height: 40px;
+  }
+}

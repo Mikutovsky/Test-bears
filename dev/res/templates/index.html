@@ -1,0 +1,64 @@
+<!-- @tx-process:include head/_head.html -->
+<!-- /@tx-process -->
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo__img"><img src="/res/images/logo.png" alt=""></div>
+                    <div class="logo__text">happy Bears</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <section class="control-panel">
+                    <div class="control-panel__inner">
+                        <div class="control-panel__title">Поступившие заявки</div>
+                        <div class="control-panel__right-section">
+                            <div class="checkbox-inner">
+                                <label class="control">
+                                    <input class="checkbox" type="checkbox" />
+                                    Только из заповедника
+                                    <div class="control__indicator"></div>
+                                </label>
+                            </div>
+                            <div class="select-box">
+                                <div class="select-box__current" tabindex="1">
+                                    <div class="select-box__value"><input class="select-box__input" type="radio" id="0" value="1" name="name" checked="checked" />
+                                        <p class="select-box__input-text">Входящие медведи</p>
+                                    </div>
+                                    <div class="select-box__value"><input class="select-box__input" type="radio" id="1" value="2" name="name" />
+                                        <p class="select-box__input-text">Входящие медведи</p>
+                                    </div>
+                                    <div class="select-box__value"><input class="select-box__input" type="radio" id="2" value="3" name="name" />
+                                        <p class="select-box__input-text">Принятые медведи</p>
+                                    </div>
+                                    <div class="select-box__value"><input class="select-box__input" type="radio" id="3" value="4" name="name" />
+                                        <p class="select-box__input-text">Отклоненные медведи</p>
+                                    </div><img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true" />
+                                </div>
+                                <ul class="select-box__list">
+                                    <li><label data-filter="all" class="select-box__option" for="1" aria-hidden="aria-hidden">Входящие медведи</label></li>
+                                    <li><label data-filter="accept" class="select-box__option" for="2" aria-hidden="aria-hidden">Принятые медведи</label></li>
+                                    <li><label data-filter="reject" class="select-box__option" for="3" aria-hidden="aria-hidden">Отклоненные медведи</label></li>
+                                </ul>
+                            </div>
+                        </div>
+                </section>
+
+                <div class="item-wrapper">
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__text">Все права защищены Happy Bears 2019©</div>
+        </footer>
+    </div>
+    <script src="/res/js/scripts.min.js" type="text/javascript" defer></script>
+</body>
+
+</html>

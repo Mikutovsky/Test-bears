@@ -1,0 +1,36 @@
+// TemplateX (Mixins, Patterns, Helpers)
+
+@import "tx/_tx";
+
+// Project Global Properties
+
+@import "project/_project";
+@import "patterns/_tx-button";
+// Project Baseline
+
+@import "base/_baseline";
+@import "base/_layout";
+
+// Utilities
+
+@import "utilities/_utilities";
+
+// Components
+
+@import "_fonts";
+
+// Sprites
+
+@import "_sprites";
+
+// Cascade
+
+@import "_cascade";
+
+//my custom style
+
+@import "my_components/variables";
+@import "my_components/_main";
+@import "my_components/_checkbox";
+@import "my_components/_selectbox";
+@import "my_components/_buttons";

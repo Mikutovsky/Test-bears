@@ -1,0 +1,37 @@
+$acceptColor: $green-100;
+$rejectColor: $green-200;
+$acceptTextColor: $rejectColor;
+$acceptHoverColor: $accent-сolor;
+$rejectHoverColor: $green-300;
+
+.btn {
+  width: 180px;
+  height: 32px;
+  outline: none;
+  border-radius: 16px;
+  border: none;
+  margin-bottom: 10px;
+  transition: $transition;
+}
+
+.inner-btn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-accept {
+  color: $acceptTextColor;
+  background-color: $acceptColor;
+  &:hover {
+    background-color: $acceptHoverColor;
+  }
+}
+
+.btn-reject {
+  color: white;
+  background-color: $rejectColor;
+  &:hover {
+    background-color: $rejectHoverColor;
+  }
+}
