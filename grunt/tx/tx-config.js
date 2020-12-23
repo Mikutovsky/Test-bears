@@ -90,6 +90,9 @@ module.exports = config => ({
       /mdz-.*/,
       /js-.*/,
       /ie\d/,
+      /item__.*/,
+      /btn*/,
+      /inner-btn/,
     ],
     dontCopy: [
       '!**/*.map',

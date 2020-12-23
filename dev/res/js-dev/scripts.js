@@ -1,57 +1,58 @@
-// import getData from "./my_components/data";
-const url = `https://private-9d5e37a-testassignment.apiary-mock.com/get-bears`;
-let list = document.querySelector(".item-wrapper"); //тело для отрисовки карточек
-let checkbox = document.querySelector(".checkbox");
-let item = document.querySelector(".reserv");
-let btn = document.querySelector("button");
+/* eslint-disable compat/compat */
+// Import getData from "./my_components/data";
+const url = 'https://private-9d5e37a-testassignment.apiary-mock.com/get-bears';
+const list = document.querySelector('.item-wrapper'); // Тело для отрисовки карточек
+const checkbox = document.querySelector('.checkbox');
+const item = document.querySelector('.reserv');
+const btn = document.querySelector('button');
 
-checkbox.addEventListener("change", () => {
-  checkbox.checked ? showReserveItem(list, "reserve") : showAllItem(list);
+checkbox.addEventListener('change', () => {
+  checkbox.checked ? showReserveItem(list, 'reserve') : showAllItem(list);
 });
 
-document.addEventListener("click", function (event) {
-  if (event.target.matches(".select-box__list label")) {
-    let status = event.target.getAttribute("data-filter");
-    if (status === "accept") {
+document.addEventListener('click', (event) => {
+  if (event.target.matches('.select-box__list label')) {
+    const status = event.target.getAttribute('data-filter');
+    if (status === 'accept') {
       hideChildrenItem(list);
-      showFilterItem(list, "accept");
-    } else if (status === "reject") {
+      showFilterItem(list, 'accept');
+    } else if (status === 'reject') {
       hideChildrenItem(list);
-      showFilterItem(list, "reject");
-    } else if (status === "all") {
+      showFilterItem(list, 'reject');
+    } else if (status === 'all') {
       hideChildrenItem(list);
-      showFilterItem(list, "all");
+      showFilterItem(list, 'all');
     }
   }
 });
 
-//work with btn
-document.addEventListener("click", function (event) {
-  if (event.target.matches("button")) {
-    let button = event.target;
-    let itemId = button.parentNode.id;
-    let item = button.parentNode.parentNode;
-    let dataFilter = button.parentNode.dataset.filter;
-    let acceptLink = `https://private-9d5e37a-testassignment.apiary-mock.com/resolve-bear?id=${itemId}`;
-    let rejectLink = `https://private-9d5e37a-testassignment.apiary-mock.com/reject-bear?id=${itemId}`;
+// Work with btn
+document.addEventListener('click', (event) => {
+  if (event.target.matches('button')) {
+    const button = event.target;
+    const itemId = button.parentNode.id;
+    const item = button.parentNode.parentNode;
+    const dataFilter = button.parentNode.dataset.filter;
+    const acceptLink = `https://private-9d5e37a-testassignment.apiary-mock.com/resolve-bear?id=${itemId}`;
+    const rejectLink = `https://private-9d5e37a-testassignment.apiary-mock.com/reject-bear?id=${itemId}`;
 
-    if (button.id === "accept") {
-      postData(item, button, acceptLink, "accept");
-    } else if (button.id === "reject") {
-      postData(item, button, rejectLink, "reject");
+    if (button.id === 'accept') {
+      postData(item, button, acceptLink, 'accept');
+    } else if (button.id === 'reject') {
+      postData(item, button, rejectLink, 'reject');
     }
   }
 });
 
 getData(url)
-  .then((data) => createData(data.results.data))
-  .catch((err) => console.log(err));
+  .then(data => createData(data.results.data))
+  .catch(err => console.log(err));
 
 function showReserveItem(list, className) {
   for (let i = 0; i < list.children.length; i++) {
     list.children[i].className.includes(className)
       ? true
-      : (list.children[i].style.display = "none");
+      : (list.children[i].style.display = 'none');
   }
 }
 
@@ -67,13 +68,13 @@ function hideChildrenItem(items) {
 }
 
 function hideItem(item) {
-  item.style.display = "none";
+  item.style.display = 'none';
 }
 
 function showFilterItem(items, filterStatus) {
   for (let i = 0; i < items.children.length; i++) {
-    if (items.children[i].getAttribute("data-filter") === filterStatus) {
-      showItem(items.children[i], "flex");
+    if (items.children[i].getAttribute('data-filter') === filterStatus) {
+      showItem(items.children[i], 'flex');
     }
   }
 }
@@ -84,17 +85,17 @@ function showItem(item, styleValue) {
 
 function showAllItem(list) {
   for (let i = 0; i < list.children.length; i++) {
-    list.children[i].style.display = "flex";
+    list.children[i].style.display = 'flex';
   }
 }
 
 function postData(item, button, link, filterValue) {
   fetch(link, {
-    method: "POST",
+    method: 'POST',
   }).then((res) => {
     if (res.status === 200) {
-      console.log("Request complete! response:", res);
-      console.log("Status code:", res.status);
+      console.log('Request complete! response:', res);
+      console.log('Status code:', res.status);
       hideItem(item);
       hideItem(button.parentNode);
       postData(link, item);
@@ -104,12 +105,10 @@ function postData(item, button, link, filterValue) {
 }
 
 function getData(url) {
-  return fetch(url).then((response) => {
-    return response.json();
-  });
+  return fetch(url).then(response => response.json());
 }
 
-//create data in dom
+// Create data in dom
 function createData(data) {
   for (let i = 0; i < data.length; i++) {
     data[i].in_reserve
