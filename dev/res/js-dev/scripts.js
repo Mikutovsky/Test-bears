@@ -1,9 +1,115 @@
+/* eslint-disable compat/compat */
 const url = 'https://private-9d5e37a-testassignment.apiary-mock.com/get-bears';
 const list = document.querySelector('.item-wrapper');
 const checkbox = document.querySelector('.checkbox');
 
+function showReserveItem(listItem, className) {
+  for (let i = 0; i < list.children.length; i += 1) {
+    if (!listItem.children[i].className.includes(className)) {
+      listItem.children[i].style.display = 'none';
+    }
+  }
+}
+
+function changeFilterValue(item, value) {
+  item.dataset.filter = value;
+}
+
+function hideItem(item) {
+  item.style.display = 'none';
+}
+
+function hideChildrenItem(items) {
+  for (let i = 0; i < items.children.length; i += 1) {
+    hideItem(items.children[i]);
+  }
+}
+
+function showItem(item, styleValue) {
+  item.style.display = styleValue;
+}
+
+function showFilterItem(items, filterStatus) {
+  for (let i = 0; i < items.children.length; i += 1) {
+    if (items.children[i].getAttribute('data-filter') === filterStatus) {
+      showItem(items.children[i], 'flex');
+    }
+  }
+}
+
+function showAllItem(listItem) {
+  for (let i = 0; i < listItem.children.length; i += 1) {
+    listItem.children[i].style.display = 'flex';
+  }
+}
+
+
+function postData(item, button, link, filterValue) {
+  fetch(link, {
+    method: 'POST',
+  }).then((res) => {
+    if (res.status === 200) {
+      hideItem(item);
+      hideItem(button.parentNode);
+      postData(link, item);
+      changeFilterValue(item, filterValue);
+    }
+  });
+}
+
+function getData(urlLink) {
+  return fetch(urlLink).then(response => response.json());
+}
+
+function createReserveItem(data, element, index) {
+  element.innerHTML += `
+  <div data-filter="all" id="${data[index].id}" class="item reserv reserve-bg-color">
+  <div class="item__img img--in-reserve"><img src="${data[index].image_url}" alt=""></div>
+  <div class="item__title-reserve reserve-title-color">В заповеднике</div>
+  <div class="item__info reserve-text-color">
+      <div class="item__title">${data[index].name}</div>
+      <div class="item__type">${data[index].type}</div>
+      <div class="item__gender">${data[index].gender}</div>
+  </div>
+  <div class="inner-btn">
+      <button id="accept" class="btn btn-accept">Принять</button>
+      <button id="reject" class="btn btn-reject reserve-btn-reject-theme">Отклонить</button>
+  </div>
+</div>`;
+}
+
+function createSimpleItem(data, element, index) {
+  element.innerHTML += `
+        <div data-filter="all" id="${data[index].id}" class="item">
+        <div class="item__img"><img src="${data[index].image_url}" alt=""></div>
+        <div class="item__info">
+            <div class="item__title">${data[index].name}</div>
+            <div class="item__type">${data[index].type}</div>
+            <div class="item__gender">${data[index].gender}</div>
+        </div>
+        <div class="inner-btn">
+            <button id="accept" class="btn btn-accept">Принять</button>
+            <button id="reject" class="btn btn-reject">Отклонить</button>
+        </div>
+    </div>`;
+}
+
+function createData(data) {
+  for (let i = 0; i < data.length; i += 1) {
+    if (data[i].in_reserve) {
+      createReserveItem(data, list, i);
+    } else {
+      createSimpleItem(data, list, i);
+    }
+  }
+}
+
 checkbox.addEventListener('change', () => {
-  checkbox.checked ? showReserveItem(list, 'reserve') : showAllItem(list);
+  if (checkbox.checked) {
+    showReserveItem(list, 'reserve');
+  } else {
+    showAllItem(list);
+  }
 });
 
 document.addEventListener('click', (event) => {
@@ -40,105 +146,4 @@ document.addEventListener('click', (event) => {
 
 getData(url)
   .then(data => createData(data.results.data))
-  .catch(err => console.log(err));
-
-function showReserveItem(list, className) {
-  for (let i = 0; i < list.children.length; i += 1) {
-    list.children[i].className.includes(className)
-      ? true
-      : (list.children[i].style.display = 'none');
-  }
-}
-
-function changeFilterValue(item, value) {
-  item.dataset.filter = value;
-}
-
-function hideChildrenItem(items) {
-  for (let i = 0; i < items.children.length; i += 1) {
-    hideItem(items.children[i]);
-    console.log(items.children[i].childNodes);
-  }
-}
-
-function hideItem(item) {
-  item.style.display = 'none';
-}
-
-function showFilterItem(items, filterStatus) {
-  for (let i = 0; i < items.children.length; i += 1) {
-    if (items.children[i].getAttribute('data-filter') === filterStatus) {
-      showItem(items.children[i], 'flex');
-    }
-  }
-}
-
-function showItem(item, styleValue) {
-  item.style.display = styleValue;
-}
-
-function showAllItem(list) {
-  for (let i = 0; i < list.children.length; i += 1) {
-    list.children[i].style.display = 'flex';
-  }
-}
-
-function postData(item, button, link, filterValue) {
-  fetch(link, {
-    method: 'POST',
-  }).then((res) => {
-    if (res.status === 200) {
-      console.log('Request complete! response:', res);
-      console.log('Status code:', res.status);
-      hideItem(item);
-      hideItem(button.parentNode);
-      postData(link, item);
-      changeFilterValue(item, filterValue);
-    }
-  });
-}
-
-function getData(url) {
-  return fetch(url).then(response => response.json());
-}
-
-function createData(data) {
-  for (let i = 0; i < data.length; i += 1) {
-    data[i].in_reserve
-      ? createReserveItem(data, list, i)
-      : createSimpleItem(data, list, i);
-  }
-}
-
-function createReserveItem(data, element, index) {
-  element.innerHTML += `
-  <div data-filter="all" id="${data[index].id}" class="item reserv reserve-bg-color">
-  <div class="item__img img--in-reserve"><img src="${data[index].image_url}" alt=""></div>
-  <div class="item__title-reserve reserve-title-color">В заповеднике</div>
-  <div class="item__info reserve-text-color">
-      <div class="item__title">${data[index].name}</div>
-      <div class="item__type">${data[index].type}</div>
-      <div class="item__gender">${data[index].gender}</div>
-  </div>
-  <div class="inner-btn">
-      <button id="accept" class="btn btn-accept">Принять</button>
-      <button id="reject" class="btn btn-reject reserve-btn-reject-theme">Отклонить</button>
-  </div>
-</div>`;
-}
-
-function createSimpleItem(data, element, index) {
-  element.innerHTML += `
-        <div data-filter="all" id="${data[index].id}" class="item">
-        <div class="item__img"><img src="${data[index].image_url}" alt=""></div>
-        <div class="item__info">
-            <div class="item__title">${data[index].name}</div>
-            <div class="item__type">${data[index].type}</div>
-            <div class="item__gender">${data[index].gender}</div>
-        </div>
-        <div class="inner-btn">
-            <button id="accept" class="btn btn-accept">Принять</button>
-            <button id="reject" class="btn btn-reject">Отклонить</button>
-        </div>
-    </div>`;
-}
+  .catch((err) => { throw err; });
