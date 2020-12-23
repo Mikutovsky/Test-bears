@@ -6,7 +6,6 @@ li {
   position: relative;
   display: block;
   min-width: 220px;
-  //   color: #e4e4e4;
   &__current {
     position: relative;
     cursor: pointer;
@@ -14,11 +13,7 @@ li {
     &:focus {
       & + .select-box__list {
         opacity: 1;
-
-        // We have to set "animation-name: none;" to make the list visible (read below how it works)
-
         animation-name: none;
-
         .select-box__option {
           cursor: pointer;
         }
@@ -73,12 +68,6 @@ li {
     padding: 0;
     list-style: none;
     opacity: 0;
-
-    // We need to use animation with delay.
-    // Otherwise the click event will not have time to run on label, because this element disapears immediately when .select-box__current element loses the focus.
-    // This delay will not be noticed because we set "opacity" to "0".
-    // We also use "animation-fill-mode: forwards" to make the list stay hidden.
-
     animation-name: HideList;
     animation-duration: 0.5s;
     animation-delay: 0.5s;
