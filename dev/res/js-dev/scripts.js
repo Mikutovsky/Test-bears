@@ -58,7 +58,7 @@ function changeFilterValue(item, value) {
 }
 
 function hideChildrenItem(items) {
-  for (let i = 0; i < items.children.length; i += 1) {
+  for (let i = 0; i < items.children.length; i += 1)) {
     hideItem(items.children[i]);
     console.log(items.children[i].childNodes);
   }
@@ -81,7 +81,7 @@ function showItem(item, styleValue) {
 }
 
 function showAllItem(list) {
-  for (let i = 0; i < list.children.length; i += 1) {
+  for (let i = 0; i < list.children.length; i += 1)) {
     list.children[i].style.display = "flex";
   }
 }
