@@ -1,91 +1,99 @@
 li {
-  margin: 0px !important;
+  margin: 0;
 }
 
 .select-box {
   position: relative;
   display: block;
   min-width: 220px;
-  &__current {
-    position: relative;
+}
+
+.select-box__current {
+  position: relative;
+  outline: none;
+  cursor: pointer;
+
+  &:focus + .select-box__list {
+    opacity: 1;
+    animation-name: none;
+  }
+
+  &:focus {
+    .select-box__icon {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  &:focus + .select-box__list + .select-box__option {
     cursor: pointer;
-    outline: none;
-    &:focus {
-      & + .select-box__list {
-        opacity: 1;
-        animation-name: none;
-        .select-box__option {
-          cursor: pointer;
-        }
-      }
-
-      .select-box__icon {
-        transform: translateY(-50%) rotate(180deg);
-      }
-    }
   }
 
-  &__icon {
-    position: absolute;
-    user-select: none;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    width: 15px;
-    opacity: 0.3;
-    transition: 0.2s ease;
-    z-index: 100;
-  }
+}
 
-  &__value {
-    display: flex;
-  }
+.select-box__icon {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  right: 15px;
+  width: 15px;
+  opacity: .3;
+  user-select: none;
+  transform: translateY(-50%);
+  transition: .2s ease;
+}
 
-  &__input {
-    display: none;
+.select-box__value {
+  display: flex;
+}
 
-    &:checked + .select-box__input-text {
-      display: block;
-    }
-  }
+.select-box__input {
+  display: none;
 
-  &__input-text {
-    border-radius: 6px;
-    display: none;
-    width: 100%;
-    margin: 0;
-    padding: 4px 4px 4px 8px;
-    background-color: #e4e4e4;
-    @include tx-media(phone) {
-      padding: 8px 35px 8px 16px;
-    }
-  }
-
-  &__list {
-    position: absolute;
-    width: 100%;
-    margin: -30px -3px 0px 0px;
-    padding: 0;
-    list-style: none;
-    opacity: 0;
-    animation-name: HideList;
-    animation-duration: 0.5s;
-    animation-delay: 0.5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: step-start;
-  }
-
-  &__option {
+  &:checked + .select-box__input-text {
     display: block;
-    padding: 4px 4px 4px 8px;
+  }
+}
+
+.select-box__input-text {
+  display: none;
+  width: 100%;
+  padding: 4px 4px 4px 8px;
+  border-radius: 6px;
+  margin: 0;
+  background-color: #e4e4e4;
+}
+
+@media only screen and (max-width: 45em) {
+  .select-box__input-text {
+    padding: 8px 35px 8px 16px;
+  }
+}
+
+.select-box__list {
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  margin: -30px -3px;
+  list-style: none;
+  opacity: 0;
+  animation-name: HideList;
+  animation-duration: .5s;
+  animation-timing-function: step-start;
+  animation-delay: .5s;
+  animation-fill-mode: forwards;
+}
+
+.select-box__option {
+  display: block;
+  padding: 4px 4px 4px 8px;
+  color: #546c84;
+  background-color: #e4e4e4;
+  transition: all .3s;
+
+  &hover,
+  &focus {
     color: #546c84;
-    background-color: #e4e4e4;
-    transition: $transition;
-    &:hover,
-    &:focus {
-      color: #546c84;
-      background-color: #feed7e;
-    }
+    background-color: #feed7e;
   }
 }
 
@@ -93,6 +101,7 @@ li {
   from {
     transform: scaleY(1);
   }
+
   to {
     transform: scaleY(0);
   }
