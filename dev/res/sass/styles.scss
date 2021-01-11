@@ -1,6 +1,6 @@
 // TemplateX (Mixins, Patterns, Helpers)
 
-@import "tx/_tx";
+@import 'tx/_tx';
 
 // Project Global Properties
 
@@ -30,7 +30,7 @@
 //my custom style
 
 @import 'my_components/_variables';
-@import 'my_components/_main';
 @import 'my_components/_checkbox';
+@import 'my_components/_main';
 @import 'my_components/_selectbox';
 @import 'my_components/_buttons';
