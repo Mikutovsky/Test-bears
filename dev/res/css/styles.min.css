@@ -764,6 +764,17 @@ body {
   background-color: #fff;
 }
 
+.item__img {
+  width: 250px;
+  margin-top: -20px;
+}
+
+.item__img img {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
 .item--reserve {
   background-color: #208085;
 }
@@ -815,12 +826,6 @@ body {
 .item__title {
   margin-bottom: 10px;
   font-size: 18px;
-}
-
-.item__img img {
-  position: relative;
-  width: 250px;
-  height: auto;
 }
 
 .item-wrapper {

@@ -101,6 +101,17 @@ body {
   background-color: $white;
 }
 
+.item__img {
+  width: 250px;
+  margin-top: -20px;
+
+  img {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+}
+
 .item--reserve {
   background-color: $reserveBgColor;
 
@@ -156,14 +167,6 @@ body {
 .item__title {
   margin-bottom: 10px;
   font-size: 18px;
-}
-
-.item__img {
-  img {
-    position: relative;
-    width: 250px;
-    height: auto;
-  }
 }
 
 .item-wrapper {
