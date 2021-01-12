@@ -104,9 +104,9 @@ body {
 .item__img {
   width: 250px;
   margin-top: -20px;
-
+  height: 150px;
+  overflow: hidden;
   img {
-    position: relative;
     width: 100%;
     height: auto;
   }

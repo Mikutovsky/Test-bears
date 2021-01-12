@@ -13,11 +13,12 @@ $green: #06842c;
   margin-right: 40px;
   @include tx-media(phone) {
     margin: 20px 0;
-    .checkbox {
-      & + label:before {
-        margin-top: 0px;
+
+    label{
+        &::before{
+          margin-top: 0;
+        }
       }
-    }
   }
 }
 
