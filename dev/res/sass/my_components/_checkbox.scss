@@ -15,7 +15,7 @@ $green: #06842c;
     margin: 20px 0;
 
     label{
-        &::before{
+        &::before {
           margin-top: 0;
         }
       }
@@ -59,13 +59,13 @@ $green: #06842c;
   }
 
   &:checked + label:after {
-    content: '';
     position: absolute;
-    left: 5px;
     top: 9px;
-    background: $gray;
+    left: 5px;
+    content: '';
     width: 2px;
     height: 2px;
+    background: $gray;
     box-shadow:
       2px 0 0 $gray,
       4px 0 0 $gray,

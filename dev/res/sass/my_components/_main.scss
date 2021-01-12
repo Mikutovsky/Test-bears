@@ -102,13 +102,15 @@ body {
 }
 
 .item__img {
-  width: 250px;
-  margin-top: -20px;
-  height: 150px;
   overflow: hidden;
+  width: 250px;
+  height: 150px;
+  margin-top: -20px;
+
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
