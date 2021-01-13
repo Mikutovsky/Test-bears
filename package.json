@@ -1,7 +1,9 @@
 {
   "name": "templatex",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "pngquant-bin": "^3.1.1"
+  },
   "devDependencies": {
     "@babel/core": "7.0.0",
     "@babel/preset-env": "7.0.0",
@@ -53,7 +55,7 @@
     "grunt-uncss": "0.8.5",
     "grunt-unused": "0.2.3",
     "imagemin-pngcrush": "5.1.0",
-    "imagemin-pngquant": "6.0.0",
+    "imagemin-pngquant": "^5.0.1",
     "load-grunt-config": "0.19.2",
     "mocha": "5.2.0"
   },
