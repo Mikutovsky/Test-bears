@@ -51,7 +51,6 @@ function postData(item, button, link, filterValue) {
     if (res.status === 200) {
       hideItem(item);
       hideItem(button.parentNode);
-      postData(link, item);
       changeFilterValue(item, filterValue);
     }
   });
@@ -128,10 +127,9 @@ document.addEventListener('click', (event) => {
   if (event.target.matches('button')) {
     const button = event.target;
     const itemId = button.parentNode.id;
-    const item = button.parentNode.parentNode;
+    const item = button.parentNode;
     const acceptLink = `https://private-9d5e37a-testassignment.apiary-mock.com/resolve-bear?id=${itemId}`;
     const rejectLink = `https://private-9d5e37a-testassignment.apiary-mock.com/reject-bear?id=${itemId}`;
-
     if (button.id === 'accept') {
       postData(item, button, acceptLink, 'accept');
     } else if (button.id === 'reject') {
