@@ -59,42 +59,26 @@ function getData(urlLink) {
   return fetch(urlLink).then(response => response.json());
 }
 
-function createReserveItem(data, element, index) {
-  element.innerHTML += `
-        <div data-filter="all" id="${data[index].id}" class="item item--reserve">
-        <div class="item__img"><img src="${data[index].image_url}" alt=""></div>
-        <div class="item__title-reserve">В заповеднике</div>
+function createItem(item) {
+  list.innerHTML += `
+        <div data-filter="all" id="${item.id}" class="item ${
+  item.in_reserve ? 'item--reserve' : ''
+}">
+        <div class="item__img"><img src="${item.image_url}" alt=""></div>
         <div class="item__info">
-            <div class="item__title">${data[index].name}</div>
-            <div class="item__type">${data[index].type}</div>
-            <div class="item__gender">${data[index].gender}</div>
+            <div class="item__title">${item.name}</div>
+            <div class="item__type">${item.type}</div>
+            <div class="item__gender">${item.gender}</div>
         </div>
         <button id="accept" class="btn btn-accept">Принять</button>
         <button id="reject" class="btn btn-reject">Отклонить</button>
 </div>`;
 }
 
-function createSimpleItem(data, element, index) {
-  element.innerHTML += `
-        <div data-filter="all" id="${data[index].id}" class="item">
-        <div class="item__img"><img src="${data[index].image_url}" alt=""></div>
-        <div class="item__info">
-            <div class="item__title">${data[index].name}</div>
-            <div class="item__type">${data[index].type}</div>
-            <div class="item__gender">${data[index].gender}</div>
-        </div>
-        <button id="accept" class="btn btn-accept">Принять</button>
-        <button id="reject" class="btn btn-reject">Отклонить</button>
-    </div>`;
-}
-
 function createData(data) {
   for (let i = 0; i < data.length; i += 1) {
-    if (data[i].in_reserve) {
-      createReserveItem(data, list, i);
-    } else {
-      createSimpleItem(data, list, i);
-    }
+    const item = data[i];
+    createItem(item);
   }
 }
 

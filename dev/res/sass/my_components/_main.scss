@@ -88,6 +88,7 @@ body {
 }
 
 .item {
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -121,6 +122,17 @@ body {
 .item--reserve {
   background-color: $reserveBgColor;
 
+  &::before {
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    content: 'В заповеднике';
+    // display: none;
+    color: $reserveTitleColor;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
   .item__info {
     color: $white;
   }
@@ -142,6 +154,7 @@ body {
       background: linear-gradient(180deg, $blue, $black);
       opacity: 0.8;
     }
+
   }
 
   .btn-reject {
@@ -153,13 +166,13 @@ body {
   }
 }
 
-.item__title-reserve {
-  position: absolute;
-  padding-top: 20px;
-  color: $reserveTitleColor;
-  font-weight: 400;
-  font-size: 18px;
-}
+// .item__title-reserve {
+//   position: absolute;
+//   padding-top: 20px;
+//   color: $reserveTitleColor;
+//   font-weight: 400;
+//   font-size: 18px;
+// }
 
 .item__info {
   margin: 25px 0;
@@ -195,3 +208,4 @@ body {
   text-align: center;
   line-height: 40px;
 }
+
