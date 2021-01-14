@@ -43,7 +43,6 @@ function showAllItem(listItem) {
   }
 }
 
-
 function postData(item, button, link, filterValue) {
   fetch(link, {
     method: 'POST',
@@ -107,21 +106,20 @@ checkbox.addEventListener('change', () => {
   }
 });
 
-document.addEventListener('click', (event) => {
-  if (event.target.matches('.select-box__list label')) {
-    const status = event.target.getAttribute('data-filter');
-    if (status === 'accept') {
-      hideChildrenItem(list);
-      showFilterItem(list, 'accept');
-    } else if (status === 'reject') {
-      hideChildrenItem(list);
-      showFilterItem(list, 'reject');
-    } else if (status === 'all') {
-      hideChildrenItem(list);
-      showFilterItem(list, 'all');
-    }
+const selectbox = [...document.querySelectorAll('.select-box__input')];
+selectbox.forEach(element => element.addEventListener('change', () => {
+  const status = element.value;
+  if (status === 'accept') {
+    hideChildrenItem(list);
+    showFilterItem(list, 'accept');
+  } else if (status === 'reject') {
+    hideChildrenItem(list);
+    showFilterItem(list, 'reject');
+  } else if (status === 'all') {
+    hideChildrenItem(list);
+    showFilterItem(list, 'all');
   }
-});
+}));
 
 document.addEventListener('click', (event) => {
   if (event.target.matches('button')) {
@@ -140,4 +138,6 @@ document.addEventListener('click', (event) => {
 
 getData(url)
   .then(data => createData(data.results.data))
-  .catch((err) => { throw err; });
+  .catch((err) => {
+    throw err;
+  });
