@@ -10,6 +10,14 @@ li {
 
 }
 
+// @media (min-width: 350px) and (max-width: 600px)  {
+//   .item-wrapper { grid-template-columns: 1fr; }
+// }
+
+// @media (min-width: 700px) and (max-width: 1400px) {
+//   .item-wrapper { grid-template-columns: 1fr 1fr 1fr; }
+// }
+
 .select-box__current {
   position: relative;
   outline: none;
